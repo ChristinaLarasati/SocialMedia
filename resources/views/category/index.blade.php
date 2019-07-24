@@ -9,15 +9,11 @@
       {{ Session::get('success')}}
     </div>
   @endif
-  <div class="col-sm-15">
+  <div class="col-sm-6">
     @foreach ($categories as $category)
       <div class="panel panel-default">
         <div class="panel-body">
           {{ $category -> name }}
-        </div>
-
-        <div class="panel-footer">
-          {{ $category -> user -> username }}
         </div>
         @endforeach
   </div>

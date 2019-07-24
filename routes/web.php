@@ -25,3 +25,4 @@ Route::post('/post', 'PostController@store')->middleware('auth');
 
 Route::get('/category', 'CategoryController@index');
 Route::post('/category', 'CategoryController@store');
+Route::get('/post/category/{name}', 'CategoryController@showAll')->name('category.showAll');

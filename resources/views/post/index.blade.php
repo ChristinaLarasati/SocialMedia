@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="container">
-    <div class="col-sm-6 col-sm-offset-3">
+    <div class="col-sm-9">
       @if (Session::has('success'))
       <div class="alert alert success">
         <a href='#' class="close" data-dismiss="alert">&times;</a>
@@ -30,6 +30,12 @@
                         <small class="text-danger">{{ $errors->first('body') }}</small>
                   @endif
               </div>
+              <div class="form-group">
+                <select class="form-control" name="category">
+                  @foreach ( $categories as $category )
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                  @endforeach
+              </div>
               <input type="submit" value="Post" class="btn btn-primary btn-block">
             </div>
         </div>
@@ -48,6 +54,8 @@
             @if ($post->image != null)
                 <img src="/images/{{ $post->image }}" alt="Image" width="100%" height="600">
             @endif
+            <br/>
+            <h6>Category :<span class="badge">{{ $post->category->name }}</span></h6>
           </div>
 
           <div class="panel-footer">
@@ -60,7 +68,11 @@
           </div>
         </div>
       @endforeach
-
-    </div<
+    </div>
+    .<div class="col-sm-3">
+      @foreach($categories as $category)
+        <a href="{{ route('category.showAll', [$category->name]) }}" class="badge">{{ $category->name }}</a>
+      @endforeach
+    </div>
   </div>
 @endsection

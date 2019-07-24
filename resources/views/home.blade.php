@@ -21,6 +21,7 @@
                           <div class = "btn-toolbar">
                               <button role="presentation" type="button" class="btn btn-default" class="active" href="#posts" aria-controls="posts" role="tab" data-toggle="tab"> Post </button>
                               <button role="presentation" type="button" class="btn btn-default" href="#comments" aria-controls="comments" role="tab" data-toggle="tab"> Comments </button>
+                              <button role="presentation" type="button" class="btn btn-default" href="#categories" aria-controls="categories" role="tab" data-toggle="tab"> Categories </button>
                           </div>
                         <!-- <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
                         <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li> -->
@@ -28,6 +29,7 @@
 
                         <div class="tab-content">
                           <div role="tabpanel" class="tab-pane active" id="posts">
+                            {{ Auth::user()->posts()->count() }} posts created.
                             @foreach (Auth::user()->posts as $post)
                               <div class ="panel panel-default">
                                 <div class="panel-heading">
@@ -35,12 +37,23 @@
                                 </div>
                                 <div class="panel-body">
                                   {{ $post->body }}
+                                  <br/>
+                                  Category::<div class="badge">{{ $post->category->name }}
+
+                                  </div>
                                 </div>
                               </div>
                             @endforeach
                           </div>
 
-                          <div role="tabpanel" class="tab-pane active" id="comments">...</div>
+
+                          <div role="tabpanel" class="tab-pane active" id="comments">
+                            All comments created by this user will be showed here.
+                          </div>
+                          <div role="tabpanel" class="tab-pane active" id="categories">
+                            All categories created by this user will be showed here.
+                          </div>
+
                           <!-- <div role="tabpanel" class="tab-pane" id="messages">...</div>
                           <div role="tabpanel" class="tab-pane" id="settings">...</div> -->
                         </div>
